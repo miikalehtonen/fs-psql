@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const router = require("express").Router();
 const { SECRET } = require("../util/config");
-const User = require("../models/user");
+const { User, Session } = require("../models");
 
 router.post("/", async (req, res) => {
   const user = await User.findOne({
@@ -21,6 +21,9 @@ router.post("/", async (req, res) => {
     },
     SECRET
   );
+
+  await Session.create({ token, userId: user.id });
+
   res.json({ token, username: user.username, name: user.name });
 });
 
