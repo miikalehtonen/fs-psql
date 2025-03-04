@@ -1,6 +1,6 @@
 CREATE TABLE blogs (
     id SERIAL PRIMARY KEY,
-    author TEXT NOT NULL,
+    author TEXT,
     title TEXT NOT NULL,
     url TEXT NOT NULL,
     likes INTEGER DEFAULT 0
